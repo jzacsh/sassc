@@ -15,12 +15,12 @@ else
 fi
 
 if [[ "x$SASS_SPEC_PATH" == "x" ]]; then
-    export SASS_SPEC_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../../sass-spec/ && pwd )"
-    echo "SASS_SPEC_PATH variable is missing, so using $SASS_SPEC_PATH" >&2
+   export SASS_SPEC_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../../sass-spec/ && pwd )"
+   echo "SASS_SPEC_PATH variable is missing, so using $SASS_SPEC_PATH" >&2
 fi
 
 if [[ ! -d "$SASS_SPEC_PATH" ]]; then
   git clone https://github.com/sass/sass-spec.git "$SASS_SPEC_PATH"
 else
-    echo "sass-spec already exists, skiping Git Clone" >&2
+  echo "sass-spec already exists, skiping Git Clone" >&2
 fi
