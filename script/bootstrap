@@ -2,10 +2,10 @@
 
 set -euo pipefail
 
-scriptPath="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"; declare -r scriptPath
 
+repoRoots="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../../ && pwd )"; declare -r repoRoots
 if [[ "x$SASS_LIBSASS_PATH" == "x" ]]; then
-  export SASS_LIBSASS_PATH="$scriptPath"/../libsass/
+  export SASS_LIBSASS_PATH="$repoRoots"/libsass/
   echo "SASS_LIBSASS_PATH variable is missing missing, so using $SASS_LIBSASS_PATH" >&2
 fi
 if [[ ! -d "$SASS_LIBSASS_PATH" ]]; then
@@ -15,7 +15,7 @@ else
 fi
 
 if [[ "x$SASS_SPEC_PATH" == "x" ]]; then
-   export SASS_SPEC_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../../sass-spec/ && pwd )"
+   export SASS_SPEC_PATH="$repoRoots"/sass-spec/
    echo "SASS_SPEC_PATH variable is missing, so using $SASS_SPEC_PATH" >&2
 fi
 
