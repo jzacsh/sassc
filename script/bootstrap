@@ -2,10 +2,10 @@
 
 set -euo pipefail
 
-SCRIPTPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"
+scriptPath="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"; declare -r scriptPath
 
 if [[ "x$SASS_LIBSASS_PATH" == "x" ]]; then
-  export SASS_LIBSASS_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../../libsass/ && pwd )"
+  export SASS_LIBSASS_PATH="$scriptPath"/../libsass/
   echo "SASS_LIBSASS_PATH variable is missing missing, so using $SASS_LIBSASS_PATH" >&2
 fi
 if [[ ! -d "$SASS_LIBSASS_PATH" ]]; then
