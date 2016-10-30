@@ -2,9 +2,15 @@
 
 set -euo pipefail
 
+isVarSetNonempty() (
+  declare -p "$1" >/dev/null 2>&1 || return 1
+  local name="${!1}"
+  [[ -n "${name}" ]]
+)
 
 repoRoots="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../../ && pwd )"; declare -r repoRoots
-if [[ "x$SASS_LIBSASS_PATH" == "x" ]]; then
+
+if ! isVarSetNonempty SASS_LIBSASS_PATH; then
   export SASS_LIBSASS_PATH="$repoRoots"/libsass/
   echo "SASS_LIBSASS_PATH variable is missing missing, so using $SASS_LIBSASS_PATH" >&2
 fi
@@ -14,7 +20,7 @@ else
   echo "LibSass already exists, skiping Git Clone" >&2
 fi
 
-if [[ "x$SASS_SPEC_PATH" == "x" ]]; then
+if ! isVarSetNonempty SASS_SPEC_PATH; then
    export SASS_SPEC_PATH="$repoRoots"/sass-spec/
    echo "SASS_SPEC_PATH variable is missing, so using $SASS_SPEC_PATH" >&2
 fi
